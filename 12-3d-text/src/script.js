@@ -35,7 +35,7 @@ fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
   const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
 
   // Text
-  const textGeometry = new TextGeometry('Hello World', {
+  const textGeometry = new TextGeometry('Gustavo Pinedo', {
     font: font,
     size: 0.5,
     height: 0.2,
