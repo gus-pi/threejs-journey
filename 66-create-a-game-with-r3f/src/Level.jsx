@@ -143,7 +143,6 @@ export function BlockLimbo({ position = [0, 0, 0] }) {
 
 export function BlockAxe({ position = [0, 0, 0] }) {
     const obstacle = useRef();
-
     const [timeOffset] = useState(() => Math.random() * Math.PI * 2);
 
     useFrame((state) => {
@@ -166,13 +165,12 @@ export function BlockAxe({ position = [0, 0, 0] }) {
                 scale={[4, 0.2, 4]}
                 receiveShadow
             />
-
             <RigidBody
+                ref={obstacle}
                 type="kinematicPosition"
                 position={[0, 0.3, 0]}
                 restitution={0.2}
                 friction={0}
-                ref={obstacle}
             >
                 <mesh
                     geometry={boxGeometry}
@@ -180,12 +178,6 @@ export function BlockAxe({ position = [0, 0, 0] }) {
                     scale={[1.5, 1.5, 0.3]}
                     castShadow
                     receiveShadow
-                />
-                <CuboidCollider
-                    args={[2, 0.1, 2 * length]}
-                    position={[0, -0.1, -(length * 2) + 2]}
-                    restitution={0.2}
-                    friction={1}
                 />
             </RigidBody>
         </group>
@@ -216,6 +208,13 @@ export function Bounds({ length = 1 }) {
                     material={wallMaterial}
                     scale={[4, 1.5, 0.3]}
                     receiveShadow
+                />
+                <CuboidCollider
+                    type="fixed"
+                    args={[2, 0.1, 2 * length]}
+                    position={[0, -0.1, -(length * 2) + 2]}
+                    restitution={0.2}
+                    friction={1}
                 />
             </RigidBody>
         </>
